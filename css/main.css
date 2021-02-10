@@ -38,12 +38,15 @@ button {
     background-color: black;
     color: white;
     cursor: pointer;
+    font-family: 'Major Mono Display', monospace;
 }
 
 button#try-me {
     background-color: #8f0;
     color: black;
     font-style: italic;
+    display: block;
+    margin-bottom: 20px;
 }
 
 button#try-me:hover {
