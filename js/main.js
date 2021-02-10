@@ -11,23 +11,7 @@ function getUserPassword() {
     return id('password').value;
 }
 
-var charset = ("ABCD").split("");
-// var charset = ("0123456789").split("");
-var majorTries = 0;
-var length = 0;
-
-// async function guessNextChar(initialGuess) {
-//     for (i=0; i<charset.length; i++) {
-//         nextChar = charset[i];
-//         printGuess(initialGuess+nextChar);
-//         await delay(1);
-//         console.log(initialGuess+nextChar);
-//         if (initialGuess+nextChar === password) {
-//             return true;
-//         }
-//     }
-// }
-
+var charset =  ("!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~").split("");
 
 async function delay(ms) {
     return new Promise((resolve, reject) => {
@@ -38,10 +22,6 @@ async function delay(ms) {
 String.prototype.replaceAt = function(index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
-
-
-var lengthier = 0;
-
 
 function getNextChar(char) {
     return charset[charset.indexOf(char)+1]
@@ -62,7 +42,7 @@ function edit(x) {
 }
 
 async function guess(x) {
-    await delay(500);
+    await delay(50);
     for (i=0; i<charset.length; i++) {
         printGuess(x+charset[i]);
         console.log(x+charset[i], password);
@@ -81,42 +61,10 @@ async function guess(x) {
 
     guess(x);
 }
- 
-// async function guess(initialGuess) {
-
-//     let x = initialGuess;
-
-//     let found = await guessNextChar(x);
-//     if (found) return;
-//     else await guessNextChar()
-
-//     if (majorTries === charset.length) {
-//         majorTries = 0;
-//         x = x.replaceAt(length, charset[lengthier]);
-//         length++;
-//     }
-
-
-//     if (x.length+1 === password.length && majorTries==0) {
-//         lengthier++;
-//         guess(charset[lengthier])
-//         return;
-//     }
-
-//     x = x.replaceAt(length, charset[majorTries++])
-
-//     // x+=charset[majorTries];
-//     // majorTries++;
-//     // //this replaces last char in the string
-//     guess(x);
-// }
 
 var password;
 
 document.getElementById("try-me").onclick = function() {
     password = getUserPassword();
-    majorTries = 0;
-    lengthier = 0;
-    length = 0;
     guess("")
 }

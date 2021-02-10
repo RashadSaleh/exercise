@@ -58,3 +58,7 @@ button#try-me:hover {
 button#try-me:active {
     background-color: #040;
 }
+
+span#guess {
+    font-family: 'Courier New', Courier, monospace;
+}
